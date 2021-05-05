@@ -11,7 +11,7 @@ function TodoFeature(props) {
    const match = useRouteMatch();
     return (
         <div>
-            Todo shate UI
+            Todo state UI
             <Switch>
                 <Route path={match.path} component={Listpage} exact />
                 <Route path={`${match.path}/:todoId`} component={Detailpage} exact/>

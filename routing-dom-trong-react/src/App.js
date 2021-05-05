@@ -6,15 +6,15 @@ import AlbumFearure from './features/Album';
 import TodoFeature from './features/Todo';
 function App() {
 
-  useEffect(()=> {
-      const fetchProducts = async () => {
-        const params = {
-          _limit: 10,
-        }
-        const productList = await productApi.getAll(params);
-        console.log(productList);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const params = {
+        _limit: 10,
       }
-      fetchProducts();
+      const productList = await productApi.getAll(params);
+      //console.log(productList);
+    }
+    fetchProducts();
   }, [])
 
   return (
@@ -27,16 +27,16 @@ function App() {
         <NavLink to='/albums'>Albums</NavLink>
       </p>
       <Switch>
-        <Redirect from='/home' to='/' exact/>
-        <Redirect from='/post-list/:postId' to='/posts/:postId' exact/>
+        <Redirect from='/home' to='/' exact />
+        <Redirect from='/post-list/:postId' to='/posts/:postId' exact />
 
-        <Route path='/' component={TodoFeature} exact/>
+        <Route path='/' component={TodoFeature} exact />
         <Route path='/todos' component={TodoFeature} />
         <Route path='/albums' component={AlbumFearure} />
         <Route component={NotFound} />
       </Switch>
     </div>
   );
-} 
+}
 
 export default App;
