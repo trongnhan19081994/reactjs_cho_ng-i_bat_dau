@@ -21,6 +21,8 @@ function InputField(props) {
             render = {({ field})=> (
                 <TextField
                     {...field}
+                    variant="outlined"
+                    margin="normal"
                     fullWidth
                     label={label}
                     disabled={disabled}
