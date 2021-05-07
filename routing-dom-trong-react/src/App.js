@@ -6,6 +6,7 @@ import NotFound from './components/NotFound';
 import AlbumFearure from './features/Album';
 import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
+import React from 'react';
 function App() {
 
   useEffect(() => {

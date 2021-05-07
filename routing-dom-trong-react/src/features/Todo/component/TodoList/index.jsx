@@ -1,4 +1,5 @@
-import classname from 'classname'
+
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import './styles.scss'
@@ -22,7 +23,7 @@ function TodoList({todoList, onTodoClick}) {
         <ul className='todo-list'>
             {todoList.map((todo, idx) => (
                 <li 
-                    className={classname({
+                    className={classNames({
                         'todo-item': true,
                         completed: todo.status==='completed'
                     })} 
