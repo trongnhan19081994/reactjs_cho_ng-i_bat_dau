@@ -2,12 +2,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, makeStyles, Typography } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import PasswordField from 'components/form-controls/passwordField';
-//import InputField from 'components/form-controls/inputField';
+import InputField from 'components/form-controls/inputField';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
-import InputField from '../../../../components/form-controls/inputField';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,7 +41,9 @@ function RegisterForm(props) {
             .test('should has at least two words', 'Please enter at least two words.', (value) => {
             return value.split(' ').length >= 2;
         }),
-        email: yup.string().required('Please enter your email.').email('Please enter a valid email')
+        email: yup.string().required('Please enter your email.').email('Please enter a valid email'),
+        password: yup.string().required('Please enter your password').min(6, 'Please enter at least 6 characters'),
+        retypePassword: yup.string().required('Please retype your password.').oneOf([yup.ref('password')], 'Password does not match')
     });
 
     const form = useForm({
@@ -54,15 +55,6 @@ function RegisterForm(props) {
         },
         resolver: yupResolver(schema),
     })
-
-    // const handleSubmit = (values) => {
-    //     //console.log('todo form ', values);
-    //     const {onSubmit} = props;
-    //     if(onSubmit) {
-    //         onSubmit(values);
-    //     }
-    //     form.reset();
-    // }
 
     const handleSubmit = async (values) => {
         const { onSubmit } = props;

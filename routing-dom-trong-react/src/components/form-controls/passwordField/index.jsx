@@ -1,4 +1,4 @@
-import { OutlinedInput, TextField } from '@material-ui/core';
+import { FormHelperText, OutlinedInput, TextField } from '@material-ui/core';
 import clsx from 'clsx';
 import FilledInput from '@material-ui/core/FilledInput';
 import FormControl from '@material-ui/core/FormControl';
@@ -20,8 +20,8 @@ PasswordField.propTypes = {
 
 function PasswordField(props) {
     const {form, name, label, disabled} = props;
-    //const {errors, formState} = form;
-    //const hasError = formState.touched[name] && errors[name];
+    const {errors} = form;
+    const hasError = !!errors[name];
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -31,32 +31,29 @@ function PasswordField(props) {
 
     return (
         <div>
-            <FormControl fullWidth margin="normal" variant="outlined">
+            <FormControl  error={hasError} fullWidth margin="normal" variant="outlined">
                 <InputLabel htmlFor="filled-adornment-password">{label}</InputLabel>
                 <Controller 
                     name={name}
                     control={form.control}
-                    render = {({ field})=> (
-                    <OutlinedInput
-                        {...field}
-                        id={name}
-                        type={showPassword ? 'text' : 'password'}
-                        label={label}
-                        endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
+                    as={OutlinedInput}
+                    id={name}
+                    type={showPassword ? 'text' : 'password'}
+                    label={label}
+                    endAdornment={
+                    <InputAdornment position="end">
+                        <IconButton
                             aria-label="toggle password visibility"
                             onClick={toggleShowPassword}
                             edge="end"
-                            >
+                        >
                             {showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                        }
-                        disabled={disabled}
-                    />
-                )}>
-                </Controller>
+                        </IconButton>
+                    </InputAdornment>
+                    }
+                    disabled={disabled}
+                />
+                <FormHelperText error={hasError}> {errors[name]?.message} </FormHelperText>
             </FormControl>
         </div>
     )
