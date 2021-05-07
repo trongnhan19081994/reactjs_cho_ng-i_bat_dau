@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, makeStyles, Typography } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
+import PasswordField from 'components/form-controls/passwordField';
 //import InputField from 'components/form-controls/inputField';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -10,6 +11,7 @@ import InputField from '../../../../components/form-controls/inputField';
 
 const useStyles = makeStyles(theme => ({
     root: {
+        position: 'relative',
         paddingTop: theme.spacing(4),
     },
     avatar: {
@@ -25,10 +27,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const schema = yup.object().shape({
-  title: yup.string().required('Please enter title').min(5, 'Title is too short'),
-});
-
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func
 }
@@ -36,6 +34,16 @@ RegisterForm.propTypes = {
 function RegisterForm(props) {
 
     const classes = useStyles();
+
+    const schema = yup.object().shape({
+        fullName: yup
+            .string()
+            .required('Please enter your full name.')
+            .test('should has at least two words', 'Please enter at least two words.', (value) => {
+            return value.split(' ').length >= 2;
+        }),
+        email: yup.string().required('Please enter your email.').email('Please enter a valid email')
+    });
 
     const form = useForm({
         defaultValues: {
@@ -47,14 +55,21 @@ function RegisterForm(props) {
         resolver: yupResolver(schema),
     })
 
-    const handleSubmit = (values) => {
-        //console.log('todo form ', values);
-        const {onSubmit} = props;
-        if(onSubmit) {
-            onSubmit(values);
+    // const handleSubmit = (values) => {
+    //     //console.log('todo form ', values);
+    //     const {onSubmit} = props;
+    //     if(onSubmit) {
+    //         onSubmit(values);
+    //     }
+    //     form.reset();
+    // }
+
+    const handleSubmit = async (values) => {
+        const { onSubmit } = props;
+        if (onSubmit) {
+          await onSubmit(values);
         }
-        form.reset();
-    }
+      };
 
     return (
         <div className={classes.root}>
@@ -67,9 +82,9 @@ function RegisterForm(props) {
             <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <InputField name='fullName' label='Full Name' form={form} />
                 <InputField name='email' label='Email' form={form} />
-                <InputField name='password' label='Password' form={form} />
-                <InputField name='retypePassword' label='Retype Password' form={form} />
-                <Button variant="contained" color="primary" fullWidth className={classes.submit}>Create an account</Button>
+                <PasswordField name='password' label='Password' form={form} />
+                <PasswordField name='retypePassword' label='Retype Password' form={form} />
+                <Button type="submit" variant="contained" color="primary" fullWidth className={classes.submit}>Create an account</Button>
             </form>
         </div>
     )
