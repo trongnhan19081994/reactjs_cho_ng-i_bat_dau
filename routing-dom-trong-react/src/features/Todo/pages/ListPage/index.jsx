@@ -1,9 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
-import TodoList from '../../component/TodoList';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import queryString from 'query-string';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import TodoForm from '../../component/TodoForm';
+import TodoList from '../../component/TodoList';
 
 Listpage.propTypes = {};
 function Listpage(props) {

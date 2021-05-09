@@ -7,6 +7,8 @@ import AlbumFearure from './features/Album';
 import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
 import React from 'react';
+import { Button } from '@material-ui/core';
+
 function App() {
 
   useEffect(() => {
@@ -24,7 +26,6 @@ function App() {
     <div className="App">
 
       <Header />
-
       {/* <p>
         <NavLink to='/todos' activeClassName='active-menu'>Todos</NavLink>
       </p>

@@ -67,7 +67,6 @@ function RegisterForm(props) {
         if (onSubmit) {
           await onSubmit(values);
         }
-        form.reset();
     };
 
     const {isSubmitting} = form.formState;
@@ -87,7 +86,7 @@ function RegisterForm(props) {
                 <InputField name='email' label='Email' form={form} />
                 <PasswordField name='password' label='Password' form={form} />
                 <PasswordField name='retypePassword' label='Retype Password' form={form} />
-                <Button disabled={isSubmitting} type="submit" variant="contained" color="primary" fullWidth className={classes.submit}>Create an account</Button>
+                <Button disabled={isSubmitting} type="submit" variant="contained" color="primary" size="large" fullWidth className={classes.submit}>Create an account</Button>
             </form>
         </div>
     )
