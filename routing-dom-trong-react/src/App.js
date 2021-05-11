@@ -26,12 +26,6 @@ function App() {
     <div className="App">
 
       <Header />
-      {/* <p>
-        <NavLink to='/todos' activeClassName='active-menu'>Todos</NavLink>
-      </p>
-      <p>
-        <NavLink to='/albums'>Albums</NavLink>
-      </p> */}
       <Switch>
         <Redirect from='/home' to='/' exact />
         <Redirect from='/post-list/:postId' to='/posts/:postId' exact />
