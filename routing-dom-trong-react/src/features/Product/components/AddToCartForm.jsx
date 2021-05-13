@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '@material-ui/core';
-import QuantityField from 'components/form-controls/quantityField';
+import QuantityField from 'components/form-controls/quantityField';
 import InputField from 'components/form-controls/inputField';
 import PropTypes from 'prop-types';
 import React from 'react';

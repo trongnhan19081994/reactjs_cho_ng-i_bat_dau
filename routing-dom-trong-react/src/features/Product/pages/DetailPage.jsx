@@ -47,7 +47,7 @@ function DetailPage(props) {
     } = useRouteMatch();
     //console.log(productId);
     const {product, loading} = useProductDetail(productId);
-    console.log(product);
+    //console.log(product);
     if(loading) {
         return <Box>
               <LinearProgress color="secondary" className={classes.loading}/>
