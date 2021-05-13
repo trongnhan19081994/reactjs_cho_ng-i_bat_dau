@@ -9,6 +9,7 @@ import TodoFeature from './features/Todo';
 import React from 'react';
 import { Button } from '@material-ui/core';
 import ProductFeature from 'features/Product';
+import CartFeature from 'features/Cart';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/todos' component={TodoFeature} />
         <Route path='/albums' component={AlbumFearure} />
         <Route path='/products' component={ProductFeature} />
+        <Route path='/cart' component={CartFeature} />
         <Route component={NotFound} />
       </Switch>
     </div>
